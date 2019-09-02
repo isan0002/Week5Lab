@@ -6,10 +6,16 @@
     <table id="t01">
     <tr>
         <th>
+            Task ID
+        </th>
+        <th>
             Task Name
         </th>
         <th>
             Due Date
+        </th>
+        <th>
+            Task Status
         </th>
         <th>
             Description
@@ -18,10 +24,16 @@
     <% for(let i=0; i<tasks.length; i++){ %>
     <tr>
         <td>
+            <%= tasks[i]._id %>
+        </td>
+        <td>
             <%= tasks[i].taskName %>
         </td>
         <td>
             <%= tasks[i].dueDate %>
+        </td>
+        <td>
+            <%= tasks[i].taskStatus %>
         </td>
         <td>
             <%= tasks[i].description %>
