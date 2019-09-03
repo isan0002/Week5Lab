@@ -47,6 +47,21 @@ app.post('/addNewTask', function (req, res) {
     res.redirect('/getAllTasks'); 
 });
 
+app.get("/addManyTasks", function(req, res){
+    let fileName = viewsPath + "/addManyTasks.html";
+    res.sendFile(fileName);
+});
+
+app.post('/addManyTasks', function (req, res) {
+    let taskDetails = req.body;
+    let tasksToAdd=[];
+    for(let i=0; i<taskDetails.count; i++){
+        tasksToAdd[i]={ taskName: taskDetails.taskName, dueDate: taskDetails.dueDate, taskStatus: taskDetails.taskStatus, description: taskDetails.description };
+    }
+    db.collection('week6').insertMany(tasksToAdd);
+    res.redirect('/getAllTasks'); 
+});
+
 app.get("/getAllTasks", function(req,res){
     db.collection('week6').find({}).toArray(function (err, data) {
         res.render('getAllTasks', { tasks: data });
